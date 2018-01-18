@@ -19,18 +19,13 @@ class Video:
         return len(self.frames)
 
     def read_frames(self, image_h, image_w):
-        '''
-        5.
-         - Read video frames from `self.cap` and collect frames into list
-         - Apply `resize()` on each frame before add it to list
-         - Also assign frames to "self" object
-         - Return your results
-        '''
-        frames = []
-        # 5-1 /5-2 Read video and collect them
+        while(self.cap.isOpened()):
+            ret, frame = self.cap.read()
+            if ret == True:
+                self.frames.append(resize(frame, image_h, image_w))
+            else: break
 
-        self.frames = ...  # 5-3 let object have the result
-        return ...  # return your results
+        return self.frames
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.cap.release()
