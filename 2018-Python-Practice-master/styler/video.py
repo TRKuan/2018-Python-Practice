@@ -19,9 +19,9 @@ class Video:
         return len(self.frames)
 
     def read_frames(self, image_h, image_w):
-        while(self.cap.isOpened()):
+        while self.cap.isOpened():
             ret, frame = self.cap.read()
-            if ret == True:
+            if ret:
                 self.frames.append(resize(frame, image_h, image_w))
             else: break
 
